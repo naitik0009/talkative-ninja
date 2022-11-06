@@ -14,7 +14,8 @@ export const LoginScreen = ({ navigation }) => {
     });
 
     const SignIn = async (email, password) => {
-        await signInWithEmailAndPassword(authentication, email, password).then((result) => {setLoading(false);navigation.navigate("Home")}).catch((error) => {setLoading(false);alert(error)});
+        setLoading(true);
+        await signInWithEmailAndPassword(authentication, email, password).then((result) => {setLoading(false);}).catch((error) => {setLoading(false);alert(error)});
     }
     return (
 
