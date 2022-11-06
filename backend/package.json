@@ -1,0 +1,11 @@
+{
+  "name": "ninja",
+  "version": "1.0.0",
+  "description": "let's talk",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "genSeven",
+  "license": "MIT"
+}
