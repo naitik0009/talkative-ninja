@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet,SafeAreaView, Text, View } from 'react-native';
+import { authentication } from '../../services/firebase/firebase';
 export const HomeScreen = ()=>{
     return(
-        <View>
-       
-        <Text>Open up App.js to start working on your app!</Text>
-        
-      </View>
+        <SafeAreaView>
+        <Text style={{color:"black",alignItems:"center"}}>Welcome {authentication.currentUser.email}</Text>
+      
+      </SafeAreaView>
     )
 }

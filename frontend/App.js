@@ -1,13 +1,13 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from 'expo-status-bar';
-import { SignInStack, SignOutStack } from "./src/routes/navigation";
+import { AuthenticationCheck } from "./src/services/auth/auth.check";
+import { LogBox } from 'react-native';
 export default function App() {
+  LogBox.ignoreAllLogs();
   return (
-    <NavigationContainer>
+    <>
        <StatusBar style="auto" />
-        {/* <SignInStack/> */}
-        <SignOutStack/>
-    </NavigationContainer>
+        <AuthenticationCheck/>
+    </>
 
   );
 }
