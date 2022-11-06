@@ -1,10 +1,12 @@
-import { HomeScreen } from "./src/screens/home/home.screen";
 import { NavigationContainer } from "@react-navigation/native";
-import { SignInStack } from "./src/routes/navigation";
+import { StatusBar } from 'expo-status-bar';
+import { SignInStack, SignOutStack } from "./src/routes/navigation";
 export default function App() {
   return (
     <NavigationContainer>
-        <SignInStack/>
+       <StatusBar style="auto" />
+        {/* <SignInStack/> */}
+        <SignOutStack/>
     </NavigationContainer>
 
   );
