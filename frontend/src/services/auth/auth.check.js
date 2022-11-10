@@ -38,7 +38,6 @@ export const AuthenticationCheck =  ({navigation}) => {
             var token;
         try {
            token = await SecureStore.getItemAsync("token").then((data)=>{
-            
             return data;
            })
         } catch (error) {
@@ -47,15 +46,12 @@ export const AuthenticationCheck =  ({navigation}) => {
         console.log(token);      
         dispatch({type:"RESTORE_TOKEN",token:token});
         }
-  
       checkAuth();
-        
     },[]);
 
     const authContext = useMemo(
         ()=>{
             return {
-
                 signIn : async (token)=>{
                     let persist;
                     try {
@@ -67,7 +63,6 @@ export const AuthenticationCheck =  ({navigation}) => {
                     }
                     console.log(persist);
                     dispatch({type:"LOGIN",token:persist});
-                    
                 },
                 signUp : async ()=>{
                     

@@ -1,12 +1,17 @@
-import { StyleSheet,SafeAreaView, Text, View, Button, Dimensions, Image, ScrollView } from 'react-native';
-import { useContext,useMemo } from 'react';
+import { StyleSheet,SafeAreaView, Text, View, Button, Dimensions, Image, FlatList} from 'react-native';
+import { useContext } from 'react';
 import { UserContext } from '../../services/auth/auth.check';
+import axios from "axios";
+import * as SecureStore from 'expo-secure-store';
 import { UserData } from '../../services/data/user.data';
-import { UserDataContext } from '../../context/context.api';
+import { useEffect } from 'react';
+import { useState } from 'react';
 export const HomeScreen = ({navigation})=>{
+  const [userData,setUserData] = useState([]);
+  let data=[];
+  const url = "http://192.168.1.70:5500/api/v1/user/profile";
   const {signOut} = useContext(UserContext);
-  const {userData} = useContext(UserDataContext);
-  useMemo(()=>{UserData()},[])
+  useEffect(()=>{UserData(data,setUserData)},[]);
     return(
       <>
         <SafeAreaView style={styles.container}>          
@@ -22,15 +27,20 @@ export const HomeScreen = ({navigation})=>{
             </View>
        
         </SafeAreaView>
-      <ScrollView>
+      
       <View>
-      {userData.map((data)=>(<Text style={{color:"black",alignItems:"center",justifyContent:"center",marginTop:200}}>{data.email}</Text>))}
+      <FlatList
+      data={userData}
+      renderItem={({item,index})=>(<Text key={index++} style={{color:"black",alignItems:"center",justifyContent:"center",marginTop:200}}>{item.email}</Text>)}
+      keyExtractor={item => item.id}
+      />
       </View>
-       
-        <Button title="Logout" onPress={ () => {
+      <View style={{marginTop:100}}>
+      <Button  touchSoundDisabled={false}  title="Logout"  onPress={ () => {
             signOut()
         }} />
-      </ScrollView>
+      </View>
+      
       
       </>
       
