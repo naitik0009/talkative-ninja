@@ -1,21 +1,32 @@
 import { Image, SafeAreaView, TouchableOpacity, StyleSheet, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, View, ScrollView } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Button } from "@rneui/themed";
-import React from "react";
-import { authentication } from "../../services/firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import React,{useContext} from "react";
+import { UserContext } from "../../services/auth/auth.check";
+// import { authentication } from "../../services/firebase/firebase";
+// import { signInWithEmailAndPassword } from "firebase/auth";
 import { Formik } from "formik"
 import * as yup from "yup";
+import axios from "axios";
 export const LoginScreen = ({ navigation }) => {
     const [loading, setLoading] = React.useState(false);
+    const url = "http://192.168.1.70:5500/api/v1/user/login";
     const LoginformSchema = yup.object().shape({
         email: yup.string().email("Invalid email").required("email is required"),
         password: yup.string().required("password is required").min(6).max(10),
     });
 
+    const {signIn} = useContext(UserContext);
+
+//firebase login 
+    // const SignIn = async (email, password) => {
+    //     setLoading(true);
+    //     await signInWithEmailAndPassword(authentication, email, password).then((result) => {setLoading(false);}).catch((error) => {setLoading(false);alert(error)});
+    // }
+
     const SignIn = async (email, password) => {
         setLoading(true);
-        await signInWithEmailAndPassword(authentication, email, password).then((result) => {setLoading(false);}).catch((error) => {setLoading(false);alert(error)});
+        await axios.post(url,{email,password}).then((result)=>{signIn(result.data.message.token);}).catch((error)=>{setLoading(false);alert(error)}).finally(()=>{setLoading(false)});
     }
     return (
 

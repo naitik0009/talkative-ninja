@@ -1,6 +1,12 @@
-import { StyleSheet,SafeAreaView, Text, View, Button, Dimensions, Image } from 'react-native';
-import { authentication } from '../../services/firebase/firebase';
-export const HomeScreen = ()=>{
+import { StyleSheet,SafeAreaView, Text, View, Button, Dimensions, Image, ScrollView } from 'react-native';
+import { useContext,useMemo } from 'react';
+import { UserContext } from '../../services/auth/auth.check';
+import { UserData } from '../../services/data/user.data';
+import { UserDataContext } from '../../context/context.api';
+export const HomeScreen = ({navigation})=>{
+  const {signOut} = useContext(UserContext);
+  const {userData} = useContext(UserDataContext);
+  useMemo(()=>{UserData()},[])
     return(
       <>
         <SafeAreaView style={styles.container}>          
@@ -16,8 +22,15 @@ export const HomeScreen = ()=>{
             </View>
        
         </SafeAreaView>
-       <Text style={{color:"black",alignItems:"center",justifyContent:"center",marginTop:200}}>Welcome {authentication.currentUser.email}</Text>
-        <Button title="Logout" onPress={()=>{authentication.signOut()}}/>
+      <ScrollView>
+      <View>
+      {userData.map((data)=>(<Text style={{color:"black",alignItems:"center",justifyContent:"center",marginTop:200}}>{data.email}</Text>))}
+      </View>
+       
+        <Button title="Logout" onPress={ () => {
+            signOut()
+        }} />
+      </ScrollView>
       
       </>
       
