@@ -17,7 +17,7 @@ export const HomeScreen = ({navigation})=>{
           <Text>Signal</Text>
           <View>
             <Text>camera</Text>
-            <Text>edit</Text>
+            <Text>editt</Text>
           </View>
             </View>
        
