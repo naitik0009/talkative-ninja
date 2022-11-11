@@ -1,4 +1,4 @@
-
+import { UserProfileScreen } from "../screens/home/user.profile.screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LoginScreen } from "../screens/auth/login.screen";
 import { RegisterScreen } from "../screens/auth/register.screen";
@@ -20,7 +20,10 @@ export const StackScreens = ({state}) => {
         </>)
         :
         (
+     <>
        <Stack.Screen name="Home" component={HomeScreen} />
+       <Stack.Screen name="Profile" component={UserProfileScreen} />
+     </>
         )
         }
     </Stack.Navigator>
