@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { UserContext } from '../../services/auth/auth.check';
 import { UserProfile } from '../../services/data/user.data';
 import {Image,Icon,Avatar,ListItem} from "@rneui/themed"
-import { useState } from 'react';
 import { useEffect } from 'react';
 import { UserDataContext } from '../../context/context.api';
 export const HomeScreen = ({navigation})=>{

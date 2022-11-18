@@ -5,6 +5,7 @@ import { RegisterScreen } from "../screens/auth/register.screen";
 import { HomeScreen } from "../screens/home/home.screen";
 import { NavigationContainer } from '@react-navigation/native';
 import { UserDataProvider } from "../context/context.api";
+import { VerifyEmailScreen } from "../screens/auth/verify.email.screen";
 const Stack = createNativeStackNavigator();
 
 export const StackScreens = ({state}) => {
@@ -17,6 +18,7 @@ export const StackScreens = ({state}) => {
         ?( <>
         <Stack.Screen name="Login" component={LoginScreen} />
          <Stack.Screen name="Register" component={RegisterScreen} />
+         <Stack.Screen name="Verify" component={VerifyEmailScreen} />
         </>)
         :
         (
@@ -36,6 +38,7 @@ export const StackScreens = ({state}) => {
          ?( <>
          <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Verify" component={VerifyEmailScreen} />
          </>)
          :
          (
